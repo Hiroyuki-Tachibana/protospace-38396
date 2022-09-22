@@ -1,0 +1,19 @@
+<main class="main">
+  <div class="inner">
+  
+    <%# ログインしているときは以下を表示する %>
+    <% if user_signed_in? %>
+      <div class="greeting">
+        こんにちは、
+        <%= link_to "#{current_user.name}さん", user_path(current_user), class: :greeting__link%>
+      </div>
+    <% end %>
+    <%# // ログインしているときは上記を表示する %>
+
+    <div class="card__wrapper">
+      <%= render partial: 'prototype', collection: @prototypes %>
+      <%#partial: 'prototype'と記述することで部分テンプレート'prototype'（views/prototypes/_prototype.html.erb）を表示できる%>
+      <%#collectionオプションは、指定したインスタンス変数の中にある要素の数だけ、部分テンプレートを繰り返し呼び出すことができる。なぜここはこの記述にしたかというとプロトタイプ毎に、画像・プロトタイプ名・キャッチコピー・投稿者の名前を表示できるようにしなければならないから。%>
+    </div>
+  </div>
+</main>
